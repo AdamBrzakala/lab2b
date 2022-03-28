@@ -75,7 +75,7 @@
     <script>
         var dragging = null;
         var list = document.getElementById('list');
-        var border_style = 'solid 2px red';
+        var border_style = 'solid 1px orange';
 
         list.addEventListener('click', function (e) {
             if (e.target && e.target.nodeName == "BUTTON") {
@@ -88,7 +88,6 @@
             dragging = target;
         });
 
-        //WHEN DRAGGING CREATE BORDER
         document.addEventListener('dragover', function (event) {
             event.preventDefault();
             var target = getLI(event.target);
@@ -103,14 +102,12 @@
             }
         });
 
-        //WHEN DRAGGING DONE DELETE BORDER
         document.addEventListener('dragleave', function (event) {
             var target = getLI(event.target);
             target.style['border-bottom'] = '';
             target.style['border-top'] = '';
         });
 
-        //WHEN DROP CHECK LIST, WHEN ITEM SHOULD BE INSERTED
         document.addEventListener('drop', function (event) {
             event.preventDefault();
             var target = getLI(event.target);
@@ -123,7 +120,6 @@
             }
         });
 
-        //FUNCTION RETURNING TARGET (LI ITEM)
         function getLI(target) {
             while (target.nodeName != 'LI' && target.nodeName != 'BODY') target = target.parentNode;
             if (target.nodeName == 'BODY') return false;
